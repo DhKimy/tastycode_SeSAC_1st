@@ -7,6 +7,9 @@
 
 import Foundation
 
+let dummyData = StudentData()
+var data: [StudentData] = [dummyData]
+
 print("""
 --- 성적관리 프로그램 ---
 안녕하세요. 성적관리 프로그램에 오신 것을 환영합니다.
@@ -22,6 +25,7 @@ while(true) {
     switch input {
     case "1":
         print("✏️ 학생을 추가합니다.")
+        createStudent()
     case "2":
         print("✏️ 학생을 삭제합니다.")
     case "3":
@@ -39,3 +43,27 @@ while(true) {
     }
 }
 
+func createStudent() {
+    print("추가할 학생의 이름을 입력해주세요")
+    
+    // 공백과 nil 체크
+    if let input = readLine() {
+        if input.isEmpty || input.hasPrefix(" "){
+            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
+            return
+        }
+        
+        // 기존 데이터 중 중복 이름 체크
+        for i in stride(from: 0, to: data.count, by: 1) {
+            if data[i].name == input {
+                print("🙅🏻 \(input)은 이미 존재하는 학생입니다. 추가할 수 없습니다.")
+                return
+            }
+        }
+            
+        var newStudentData = StudentData()
+        newStudentData.name = input
+        data.append(newStudentData)
+        print("🙌🏻 \(input) 학생을 추가했습니다. 🙌🏻")
+    }
+}
