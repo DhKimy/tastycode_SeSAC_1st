@@ -37,6 +37,7 @@ while(true) {
         deleteScore()
     case "5":
         print("✏️ 평점을 검색합니다.")
+        showScore()
     case "X":
         print("프로그램을 종료합니다...")
         exit(0)
@@ -160,4 +161,59 @@ func deleteScore() {
         
         print("🙅🏻 \(nameAndScoreSet[0]) 학생이 존재하지 않거나 \(nameAndScoreSet[0]) 학생은 \(nameAndScoreSet[1]) 과목 성적을 가지고 있지 않습니다. 다시 입력해주세요.")
     }
+}
+
+func showScore() {
+    print("평점을 알고 싶은 학생의 이름을 입력해주세요.")
+    
+    if let input = readLine() {
+        // 공백과 nil 체크
+        if input.isEmpty || input.hasPrefix(" ") {
+            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
+            return
+        }
+        
+        for i in stride(from: 0, to: data.count, by: 1) {
+            if data[i].name == input {
+                for (key, value) in data[i].subjectScore {
+                    print("\(key) : \(value)")
+                }
+                print("평점 : \(calScore(scoreSet: data[i].subjectScore))")
+                return
+            }
+        }
+        print("🙅🏻 \(input) 학생을 찾지 못했습니다. 다시 확인해주세요")
+        
+    }
+}
+
+func calScore(scoreSet: Dictionary<String, String>) -> Double {
+    var scoreSum: Double = 0.0
+    
+    for (_, value) in scoreSet{
+        switch value {
+        case "A+":
+            scoreSum += 4.5
+        case "A":
+            scoreSum += 4.0
+        case "B+":
+            scoreSum += 3.5
+        case "B":
+            scoreSum += 3.0
+        case "C+":
+            scoreSum += 2.5
+        case "C":
+            scoreSum += 2.0
+        case "D+":
+            scoreSum += 1.5
+        case "D":
+            scoreSum += 1.0
+        case "F":
+            scoreSum += 0
+        default:
+            print("🙅🏻 성적 입력 데이터가 잘못되었습니다. \(scoreSet.keys) 과목의 성적을 대문자로 수정하고 시도하여 주세요.")
+        }
+    }
+    
+    return round(scoreSum/Double(scoreSet.count) * 100) / 100
 }
