@@ -34,6 +34,7 @@ while(true) {
         updateScore()
     case "4":
         print("✏️ 성적을 삭제합니다.")
+        deleteScore()
     case "5":
         print("✏️ 평점을 검색합니다.")
     case "X":
@@ -101,14 +102,14 @@ func updateScore() {
 """)
     if let input = readLine() {
         // 공백과 nil 체크
-        if input.isEmpty || input.hasPrefix(" ") || input.hasSuffix(" "){
+        if input.isEmpty || input.hasPrefix(" ") || input.hasSuffix(" ") {
             print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
             return
         }
         
-        let nameAndScore = input.components(separatedBy: " ")
+        let nameSubjectScoreSet = input.components(separatedBy: " ")
         
-        if nameAndScore.count != 3 {
+        if nameSubjectScoreSet.count != 3 {
             print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
             return
         }
@@ -117,14 +118,46 @@ func updateScore() {
          */
         
         for i in stride(from: 0, to: data.count, by: 1) {
-            if data[i].name == nameAndScore[0] {
-                data[i].subjectScore["\(nameAndScore[1])"] = nameAndScore[2]
+            if data[i].name == nameSubjectScoreSet[0] {
+                data[i].subjectScore["\(nameSubjectScoreSet[1])"] = nameSubjectScoreSet[2]
                 
-                print("🙆🏻‍♀️ \(nameAndScore[0]) 학생의 \(nameAndScore[1]) 과목이 \(nameAndScore[2])로 추가(변경)되었습니다.")
+                print("🙆🏻‍♀️ \(nameSubjectScoreSet[0]) 학생의 \(nameSubjectScoreSet[1]) 과목이 \(nameSubjectScoreSet[2])로 추가(변경)되었습니다.")
                 return
             }
         }
         
-        print("🙅🏻 \(nameAndScore[0]) 학생은 존재하지 않습니다. 다시 입력해주세요.")
+        print("🙅🏻 \(nameSubjectScoreSet[0]) 학생은 존재하지 않습니다. 다시 입력해주세요.")
+    }
+}
+
+func deleteScore() {
+    print("""
+성적을 삭제할 학생의 이름, 과목 이름을 띄어쓰기로 구분하여 차례로 작성해주세요.
+입력예) Mickey Swift
+""")
+    
+    if let input = readLine() {
+        // 공백과 nil 체크
+        if input.isEmpty || input.hasPrefix(" "){
+            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
+            return
+        }
+        
+        let nameAndScoreSet = input.components(separatedBy: " ")
+        
+        if nameAndScoreSet.count != 2 {
+            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
+            return
+        }
+        
+        for i in stride(from: 0, to: data.count, by: 1) {
+            if data[i].name == nameAndScoreSet[0] {
+                data[i].subjectScore.removeValue(forKey: nameAndScoreSet[1])
+                print("🙆🏻‍♀️ \(nameAndScoreSet[0]) 학생의 \(nameAndScoreSet[1]) 과목 성적이 삭제되었습니다.")
+                return
+            }
+        }
+        
+        print("🙅🏻 \(nameAndScoreSet[0]) 학생이 존재하지 않거나 \(nameAndScoreSet[0]) 학생은 \(nameAndScoreSet[1]) 과목 성적을 가지고 있지 않습니다. 다시 입력해주세요.")
     }
 }
