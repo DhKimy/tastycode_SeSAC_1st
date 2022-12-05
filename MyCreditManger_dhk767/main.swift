@@ -12,13 +12,12 @@ print("""
 안녕하세요. 성적관리 프로그램에 오신 것을 환영합니다.
 """)
 
-while(true){
+while(true) {
     print("""
           원하는 기능을 입력해주세요.
           1: 학생추가  2: 학생삭제  3: 성적추가  4: 성적삭제  5: 평점보기  X : 종료
           
           """)
-    
     let input = readLine()
     switch input {
     case "1":
