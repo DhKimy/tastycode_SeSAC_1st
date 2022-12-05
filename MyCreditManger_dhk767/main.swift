@@ -31,6 +31,7 @@ while(true) {
         deleteStudent()
     case "3":
         print("✏️ 성적을 추가합니다.")
+        updateScore()
     case "4":
         print("✏️ 성적을 삭제합니다.")
     case "5":
@@ -74,7 +75,7 @@ func deleteStudent() {
     
     if let input = readLine() {
         // 공백과 nil 체크
-        if input.isEmpty || input.hasPrefix(" "){
+        if input.isEmpty || input.hasPrefix(" ") {
             print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
             return
         }
@@ -88,5 +89,42 @@ func deleteStudent() {
         }
         
         print("🙅🏻 \(input) 학생을 찾지 못했습니다. 다시 확인해주세요")
+    }
+}
+
+func updateScore() {
+    print("""
+성적을 추가할 학생의 이름, 과목 이름, 성적(A+, A, F 등)을 띄어쓰기로 구분하여 차례로 작성해주세요.
+입력예) Mickey Swift A+
+
+만약, 학생의 성적 중 해당 과목이 존재하면 기존 점수가 갱신됩니다.
+""")
+    if let input = readLine() {
+        // 공백과 nil 체크
+        if input.isEmpty || input.hasPrefix(" ") || input.hasSuffix(" "){
+            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
+            return
+        }
+        
+        let nameAndScore = input.components(separatedBy: " ")
+        
+        if nameAndScore.count != 3 {
+            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
+            return
+        }
+        /*
+          성적 값이 제대로 들어오는 지 확인하는 절차 필요
+         */
+        
+        for i in stride(from: 0, to: data.count, by: 1) {
+            if data[i].name == nameAndScore[0] {
+                data[i].subjectScore["\(nameAndScore[1])"] = nameAndScore[2]
+                
+                print("🙆🏻‍♀️ \(nameAndScore[0]) 학생의 \(nameAndScore[1]) 과목이 \(nameAndScore[2])로 추가(변경)되었습니다.")
+                return
+            }
+        }
+        
+        print("🙅🏻 \(nameAndScore[0]) 학생은 존재하지 않습니다. 다시 입력해주세요.")
     }
 }
