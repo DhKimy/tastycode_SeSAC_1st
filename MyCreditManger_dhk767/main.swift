@@ -10,6 +10,8 @@ import Foundation
 let dummyData = StudentData()
 var datum: [StudentData] = [dummyData]
 var searchTool = SearchTool()
+var inputErrorCheck = InputErrorCheck()
+
 startProgram()
 
 func startProgram() {
@@ -55,46 +57,40 @@ func startProgram() {
 func createStudent() {
     print("추가할 학생의 이름을 입력해주세요")
     
-    // 공백과 nil 체크
-    if let input = readLine() {
-        if input.isEmpty || input.hasPrefix(" ") || input.hasSuffix(" "){
-            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
-            return
-        }
-        
-        guard searchTool.searchForName(studentName: input, arrayLength: datum.count, dataSet: datum) != nil else {
-            let newStudentData = StudentData()
-            newStudentData.name = input
-            datum.append(newStudentData)
-            print("🙌🏻 \(input) 학생을 추가했습니다. 🙌🏻")
-            return
-        }
-        
-        print("🙅🏻 \(input)은 이미 존재하는 학생입니다. 추가할 수 없습니다.")
-        return
-
+    guard let input = inputErrorCheck.inputName() else {
+        print("🙅🏻 프로그램에 오류가 생겼습니다.")
+        exit(0)
     }
+    
+    guard searchTool.searchForName(studentName: input, arrayLength: datum.count, dataSet: datum) != nil else {
+        let newStudentData = StudentData()
+        newStudentData.name = input
+        datum.append(newStudentData)
+        print("🙌🏻 \(input) 학생을 추가했습니다. 🙌🏻")
+        return
+    }
+    
+    print("🙅🏻 \(input)은 이미 존재하는 학생입니다. 추가할 수 없습니다.")
+    return
+
+    
 }
 
 func deleteStudent() {
     print("삭제할 학생의 이름을 입력해주세요")
     
-    if let input = readLine() {
-        // 공백과 nil 체크
-        if input.isEmpty || input.hasPrefix(" ") {
-            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
-            return
-        }
+    guard let input = inputErrorCheck.inputName() else {
+        print("🙅🏻 프로그램에 오류가 생겼습니다.")
+        exit(0)
+    }
         
-        guard let studentIndex = searchTool.searchForName(studentName: input, arrayLength: datum.count, dataSet: datum) else {
-            print("🙅🏻 \(input) 학생을 찾지 못했습니다. 다시 확인해주세요")
-            return
-        }
-        
-        datum.remove(at: studentIndex)
-        print("🗑️ \(input) 학생을 삭제하였습니다.")
+    guard let studentIndex = searchTool.searchForName(studentName: input, arrayLength: datum.count, dataSet: datum) else {
+        print("🙅🏻 \(input) 학생을 찾지 못했습니다. 다시 확인해주세요")
         return
     }
+    
+    datum.remove(at: studentIndex)
+    print("🗑️ \(input) 학생을 삭제하였습니다.")
 }
 
 func updateScore() {
@@ -165,25 +161,20 @@ func deleteScore() {
 func showScore() {
     print("평점을 알고 싶은 학생의 이름을 입력해주세요.")
     
-    if let input = readLine() {
-        // 공백과 nil 체크
-        if input.isEmpty || input.hasPrefix(" ") {
-            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
-            return
-        }
-        
-        guard let studentIndex = searchTool.searchForName(studentName: input, arrayLength: datum.count, dataSet: datum) else {
-            print("🙅🏻 \(input) 학생을 찾지 못했습니다. 다시 확인해주세요")
-            return
-        }
-        
-        for (key, value) in datum[studentIndex].subjectScore {
-            print("\(key) : \(value)")
-        }
-        print("평점 : \(calScore(scoreSet: datum[studentIndex].subjectScore))")
-        return
-            
+    guard let input = inputErrorCheck.inputName() else {
+        print("🙅🏻 프로그램에 오류가 생겼습니다.")
+        exit(0)
     }
+        
+    guard let studentIndex = searchTool.searchForName(studentName: input, arrayLength: datum.count, dataSet: datum) else {
+        print("🙅🏻 \(input) 학생을 찾지 못했습니다. 다시 확인해주세요")
+        return
+    }
+    
+    for (key, value) in datum[studentIndex].subjectScore {
+        print("\(key) : \(value)")
+    }
+    print("평점 : \(calScore(scoreSet: datum[studentIndex].subjectScore))")
 }
 
 func calScore(scoreSet: Dictionary<String, String>) -> Double {
