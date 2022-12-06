@@ -128,7 +128,6 @@ func updateScore() {
         
         datum[studentIndex].subjectScore["\(nameSubjectScoreSet[1])"] = nameSubjectScoreSet[2]
         print("🙆🏻‍♀️ \(nameSubjectScoreSet[0]) 학생의 \(nameSubjectScoreSet[1]) 과목이 \(nameSubjectScoreSet[2])로 추가(변경)되었습니다.")
-        return
             
     }
 }
@@ -153,15 +152,13 @@ func deleteScore() {
             return
         }
         
-        for i in stride(from: 0, to: datum.count, by: 1) {
-            if datum[i].name == nameAndScoreSet[0] {
-                datum[i].subjectScore.removeValue(forKey: nameAndScoreSet[1])
-                print("🙆🏻‍♀️ \(nameAndScoreSet[0]) 학생의 \(nameAndScoreSet[1]) 과목 성적이 삭제되었습니다.")
-                return
-            }
+        guard let studentIndex = searchTool.searchForName(studentName: nameAndScoreSet[0], arrayLength: datum.count, dataSet: datum) else {
+            print("🙅🏻 \(nameAndScoreSet[0]) 학생이 존재하지 않거나 \(nameAndScoreSet[0]) 학생은 \(nameAndScoreSet[1]) 과목 성적을 가지고 있지 않습니다. 다시 입력해주세요.")
+            return
         }
         
-        print("🙅🏻 \(nameAndScoreSet[0]) 학생이 존재하지 않거나 \(nameAndScoreSet[0]) 학생은 \(nameAndScoreSet[1]) 과목 성적을 가지고 있지 않습니다. 다시 입력해주세요.")
+        datum[studentIndex].subjectScore.removeValue(forKey: nameAndScoreSet[1])
+        print("🙆🏻‍♀️ \(nameAndScoreSet[0]) 학생의 \(nameAndScoreSet[1]) 과목 성적이 삭제되었습니다.")
     }
 }
 
@@ -175,18 +172,17 @@ func showScore() {
             return
         }
         
-        
-        for i in stride(from: 0, to: datum.count, by: 1) {
-            if datum[i].name == input {
-                for (key, value) in datum[i].subjectScore {
-                    print("\(key) : \(value)")
-                }
-                print("평점 : \(calScore(scoreSet: datum[i].subjectScore))")
-                return
-            }
+        guard let studentIndex = searchTool.searchForName(studentName: input, arrayLength: datum.count, dataSet: datum) else {
+            print("🙅🏻 \(input) 학생을 찾지 못했습니다. 다시 확인해주세요")
+            return
         }
-        print("🙅🏻 \(input) 학생을 찾지 못했습니다. 다시 확인해주세요")
         
+        for (key, value) in datum[studentIndex].subjectScore {
+            print("\(key) : \(value)")
+        }
+        print("평점 : \(calScore(scoreSet: datum[studentIndex].subjectScore))")
+        return
+            
     }
 }
 
