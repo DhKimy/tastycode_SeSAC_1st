@@ -11,7 +11,6 @@
 		C91B68A9293DDE4B00181440 /* StudentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91B68A8293DDE4B00181440 /* StudentData.swift */; };
 		C97E812C293DEE14000490F9 /* InputErrorCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E812B293DEE14000490F9 /* InputErrorCheck.swift */; };
 		C97E812E293F51C7000490F9 /* SearchTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E812D293F51C7000490F9 /* SearchTool.swift */; };
-		C97E8130293F6471000490F9 /* ScoreEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E812F293F6471000490F9 /* ScoreEnum.swift */; };
 		C97E8132293F6EA6000490F9 /* CalculateScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E8131293F6EA6000490F9 /* CalculateScore.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +34,6 @@
 		C97E8124293DEBE4000490F9 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97E812B293DEE14000490F9 /* InputErrorCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputErrorCheck.swift; sourceTree = "<group>"; };
 		C97E812D293F51C7000490F9 /* SearchTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTool.swift; sourceTree = "<group>"; };
-		C97E812F293F6471000490F9 /* ScoreEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreEnum.swift; sourceTree = "<group>"; };
 		C97E8131293F6EA6000490F9 /* CalculateScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateScore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,7 +79,6 @@
 				C91B68A8293DDE4B00181440 /* StudentData.swift */,
 				C97E812B293DEE14000490F9 /* InputErrorCheck.swift */,
 				C97E812D293F51C7000490F9 /* SearchTool.swift */,
-				C97E812F293F6471000490F9 /* ScoreEnum.swift */,
 				C97E8131293F6EA6000490F9 /* CalculateScore.swift */,
 				C91B68A7293DD68000181440 /* README.md */,
 			);
@@ -181,7 +178,6 @@
 				C91B68A9293DDE4B00181440 /* StudentData.swift in Sources */,
 				C97E812C293DEE14000490F9 /* InputErrorCheck.swift in Sources */,
 				C97E812E293F51C7000490F9 /* SearchTool.swift in Sources */,
-				C97E8130293F6471000490F9 /* ScoreEnum.swift in Sources */,
 				C97E8132293F6EA6000490F9 /* CalculateScore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
