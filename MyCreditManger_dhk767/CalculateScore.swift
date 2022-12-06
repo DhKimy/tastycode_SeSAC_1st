@@ -35,8 +35,6 @@ class CalculateScore {
                 print("🙅🏻 성적 입력 데이터가 잘못되었습니다. \(scoreSet.keys) 과목의 성적을 대문자로 수정하고 시도하여 주세요.")
             }
         }
-        
         return round(scoreSum/Double(scoreSet.count) * 100) / 100
     }
-
 }

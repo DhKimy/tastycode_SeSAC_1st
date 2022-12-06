@@ -46,14 +46,14 @@ class InputErrorCheck {
                 return self.inputDataSet()
             }
             
-            let nameSubjectScoreSet = input.components(separatedBy: " ")
+            let nameSubjectScoreArray = input.components(separatedBy: " ")
             
-            if nameSubjectScoreSet.count == 2 {
-                return nameSubjectScoreSet
+            if nameSubjectScoreArray.count == 2 {
+                return nameSubjectScoreArray
             }
             
-            if nameSubjectScoreSet.count == 3 && scoreAToF.contains(nameSubjectScoreSet[2]){
-                return nameSubjectScoreSet
+            if nameSubjectScoreArray.count == 3 && scoreAToF.contains(nameSubjectScoreArray[2]){
+                return nameSubjectScoreArray
             }
         }
         print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")

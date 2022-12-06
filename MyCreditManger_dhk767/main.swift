@@ -95,14 +95,14 @@ func updateScore() {
     만약, 학생의 성적 중 해당 과목이 존재하면 기존 점수가 갱신됩니다.
     """)
     
-    let nameSubjectScoreSet = inputErrorCheck.inputDataSet()
-    guard let studentIndex = searchTool.searchForName(studentName: nameSubjectScoreSet[0], arrayLength: datum.count, dataSet: datum) else {
-        print("🙅🏻 \(nameSubjectScoreSet[0]) 학생은 존재하지 않습니다. 다시 입력해주세요.")
+    let nameSubjectScoreArray = inputErrorCheck.inputDataSet()
+    guard let studentIndex = searchTool.searchForName(studentName: nameSubjectScoreArray[0], arrayLength: datum.count, dataSet: datum) else {
+        print("🙅🏻 \(nameSubjectScoreArray[0]) 학생은 존재하지 않습니다. 다시 입력해주세요.")
         return
     }
     
-    datum[studentIndex].subjectScore["\(nameSubjectScoreSet[1])"] = nameSubjectScoreSet[2]
-    print("🙆🏻‍♀️ \(nameSubjectScoreSet[0]) 학생의 \(nameSubjectScoreSet[1]) 과목이 \(nameSubjectScoreSet[2])로 추가(변경)되었습니다.")
+    datum[studentIndex].subjectScore["\(nameSubjectScoreArray[1])"] = nameSubjectScoreArray[2]
+    print("🙆🏻‍♀️ \(nameSubjectScoreArray[0]) 학생의 \(nameSubjectScoreArray[1]) 과목이 \(nameSubjectScoreArray[2])로 추가(변경)되었습니다.")
 }
 
 func deleteScore() {
@@ -111,14 +111,14 @@ func deleteScore() {
     입력예) Mickey Swift
     """)
     
-    let nameAndScoreSet = inputErrorCheck.inputDataSet()
-    guard let studentIndex = searchTool.searchForName(studentName: nameAndScoreSet[0], arrayLength: datum.count, dataSet: datum) else {
-        print("🙅🏻 \(nameAndScoreSet[0]) 학생이 존재하지 않거나 \(nameAndScoreSet[0]) 학생은 \(nameAndScoreSet[1]) 과목 성적을 가지고 있지 않습니다. 다시 입력해주세요.")
+    let nameAndScoreArray = inputErrorCheck.inputDataSet()
+    guard let studentIndex = searchTool.searchForName(studentName: nameAndScoreArray[0], arrayLength: datum.count, dataSet: datum) else {
+        print("🙅🏻 \(nameAndScoreArray[0]) 학생이 존재하지 않거나 \(nameAndScoreArray[0]) 학생은 \(nameAndScoreArray[1]) 과목 성적을 가지고 있지 않습니다. 다시 입력해주세요.")
         return
     }
     
-    datum[studentIndex].subjectScore.removeValue(forKey: nameAndScoreSet[1])
-    print("🙆🏻‍♀️ \(nameAndScoreSet[0]) 학생의 \(nameAndScoreSet[1]) 과목 성적이 삭제되었습니다.")
+    datum[studentIndex].subjectScore.removeValue(forKey: nameAndScoreArray[1])
+    print("🙆🏻‍♀️ \(nameAndScoreArray[0]) 학생의 \(nameAndScoreArray[1]) 과목 성적이 삭제되었습니다.")
 }
 
 func searchScore() {
