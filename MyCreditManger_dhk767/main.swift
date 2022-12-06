@@ -11,6 +11,7 @@ let dummyData = StudentData()
 var datum: [StudentData] = [dummyData]
 var searchTool = SearchTool()
 var inputErrorCheck = InputErrorCheck()
+var calculator = CalculateScore()
 
 startProgram()
 
@@ -53,7 +54,6 @@ func startProgram() {
     }
 }
 
-
 func createStudent() {
     print("추가할 학생의 이름을 입력해주세요")
     
@@ -61,7 +61,6 @@ func createStudent() {
         print("🙅🏻 프로그램에 오류가 생겼습니다.")
         exit(0)
     }
-    
     guard searchTool.searchForName(studentName: input, arrayLength: datum.count, dataSet: datum) != nil else {
         let newStudentData = StudentData()
         newStudentData.name = input
@@ -72,8 +71,6 @@ func createStudent() {
     
     print("🙅🏻 \(input)은 이미 존재하는 학생입니다. 추가할 수 없습니다.")
     return
-
-    
 }
 
 func deleteStudent() {
@@ -83,7 +80,6 @@ func deleteStudent() {
         print("🙅🏻 프로그램에 오류가 생겼습니다.")
         exit(0)
     }
-        
     guard let studentIndex = searchTool.searchForName(studentName: input, arrayLength: datum.count, dataSet: datum) else {
         print("🙅🏻 \(input) 학생을 찾지 못했습니다. 다시 확인해주세요")
         return
@@ -100,62 +96,31 @@ func updateScore() {
 
     만약, 학생의 성적 중 해당 과목이 존재하면 기존 점수가 갱신됩니다.
     """)
-    if let input = readLine() {
-        // 공백과 nil 체크
-        if input.isEmpty || input.hasPrefix(" ") || input.hasSuffix(" ") {
-            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
-            return
-        }
-        
-        let nameSubjectScoreSet = input.components(separatedBy: " ")
-        
-        if nameSubjectScoreSet.count != 3 {
-            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
-            return
-        }
-        /*
-          성적 값이 제대로 들어오는 지 확인하는 절차 필요
-         */
-        
-        guard let studentIndex = searchTool.searchForName(studentName: nameSubjectScoreSet[0], arrayLength: datum.count, dataSet: datum) else {
-            print("🙅🏻 \(nameSubjectScoreSet[0]) 학생은 존재하지 않습니다. 다시 입력해주세요.")
-            return
-        }
-        
-        datum[studentIndex].subjectScore["\(nameSubjectScoreSet[1])"] = nameSubjectScoreSet[2]
-        print("🙆🏻‍♀️ \(nameSubjectScoreSet[0]) 학생의 \(nameSubjectScoreSet[1]) 과목이 \(nameSubjectScoreSet[2])로 추가(변경)되었습니다.")
-            
+    
+    let nameSubjectScoreSet = inputErrorCheck.inputDataSet()
+    guard let studentIndex = searchTool.searchForName(studentName: nameSubjectScoreSet[0], arrayLength: datum.count, dataSet: datum) else {
+        print("🙅🏻 \(nameSubjectScoreSet[0]) 학생은 존재하지 않습니다. 다시 입력해주세요.")
+        return
     }
+    
+    datum[studentIndex].subjectScore["\(nameSubjectScoreSet[1])"] = nameSubjectScoreSet[2]
+    print("🙆🏻‍♀️ \(nameSubjectScoreSet[0]) 학생의 \(nameSubjectScoreSet[1]) 과목이 \(nameSubjectScoreSet[2])로 추가(변경)되었습니다.")
 }
 
 func deleteScore() {
     print("""
-성적을 삭제할 학생의 이름, 과목 이름을 띄어쓰기로 구분하여 차례로 작성해주세요.
-입력예) Mickey Swift
-""")
+    성적을 삭제할 학생의 이름, 과목 이름을 띄어쓰기로 구분하여 차례로 작성해주세요.
+    입력예) Mickey Swift
+    """)
     
-    if let input = readLine() {
-        // 공백과 nil 체크
-        if input.isEmpty || input.hasPrefix(" "){
-            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
-            return
-        }
-        
-        let nameAndScoreSet = input.components(separatedBy: " ")
-        
-        if nameAndScoreSet.count != 2 {
-            print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
-            return
-        }
-        
-        guard let studentIndex = searchTool.searchForName(studentName: nameAndScoreSet[0], arrayLength: datum.count, dataSet: datum) else {
-            print("🙅🏻 \(nameAndScoreSet[0]) 학생이 존재하지 않거나 \(nameAndScoreSet[0]) 학생은 \(nameAndScoreSet[1]) 과목 성적을 가지고 있지 않습니다. 다시 입력해주세요.")
-            return
-        }
-        
-        datum[studentIndex].subjectScore.removeValue(forKey: nameAndScoreSet[1])
-        print("🙆🏻‍♀️ \(nameAndScoreSet[0]) 학생의 \(nameAndScoreSet[1]) 과목 성적이 삭제되었습니다.")
+    let nameAndScoreSet = inputErrorCheck.inputDataSet()
+    guard let studentIndex = searchTool.searchForName(studentName: nameAndScoreSet[0], arrayLength: datum.count, dataSet: datum) else {
+        print("🙅🏻 \(nameAndScoreSet[0]) 학생이 존재하지 않거나 \(nameAndScoreSet[0]) 학생은 \(nameAndScoreSet[1]) 과목 성적을 가지고 있지 않습니다. 다시 입력해주세요.")
+        return
     }
+    
+    datum[studentIndex].subjectScore.removeValue(forKey: nameAndScoreSet[1])
+    print("🙆🏻‍♀️ \(nameAndScoreSet[0]) 학생의 \(nameAndScoreSet[1]) 과목 성적이 삭제되었습니다.")
 }
 
 func showScore() {
@@ -165,7 +130,6 @@ func showScore() {
         print("🙅🏻 프로그램에 오류가 생겼습니다.")
         exit(0)
     }
-        
     guard let studentIndex = searchTool.searchForName(studentName: input, arrayLength: datum.count, dataSet: datum) else {
         print("🙅🏻 \(input) 학생을 찾지 못했습니다. 다시 확인해주세요")
         return
@@ -174,36 +138,5 @@ func showScore() {
     for (key, value) in datum[studentIndex].subjectScore {
         print("\(key) : \(value)")
     }
-    print("평점 : \(calScore(scoreSet: datum[studentIndex].subjectScore))")
-}
-
-func calScore(scoreSet: Dictionary<String, String>) -> Double {
-    var scoreSum: Double = 0.0
-    
-    for (_, value) in scoreSet{
-        switch value {
-        case "A+":
-            scoreSum += 4.5
-        case "A":
-            scoreSum += 4.0
-        case "B+":
-            scoreSum += 3.5
-        case "B":
-            scoreSum += 3.0
-        case "C+":
-            scoreSum += 2.5
-        case "C":
-            scoreSum += 2.0
-        case "D+":
-            scoreSum += 1.5
-        case "D":
-            scoreSum += 1.0
-        case "F":
-            scoreSum += 0
-        default:
-            print("🙅🏻 성적 입력 데이터가 잘못되었습니다. \(scoreSet.keys) 과목의 성적을 대문자로 수정하고 시도하여 주세요.")
-        }
-    }
-    
-    return round(scoreSum/Double(scoreSet.count) * 100) / 100
+    print("평점 : \(calculator.calculatingScore(scoreSet: datum[studentIndex].subjectScore))")
 }
