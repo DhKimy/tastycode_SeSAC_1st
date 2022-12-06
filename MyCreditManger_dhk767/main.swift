@@ -95,7 +95,7 @@ func updateScore() {
     만약, 학생의 성적 중 해당 과목이 존재하면 기존 점수가 갱신됩니다.
     """)
     
-    let nameSubjectScoreArray = inputErrorCheck.inputDataSet()
+    let nameSubjectScoreArray = inputErrorCheck.inputDataArray()
     guard let studentIndex = searchTool.searchForName(studentName: nameSubjectScoreArray[0], arrayLength: datum.count, dataSet: datum) else {
         print("🙅🏻 \(nameSubjectScoreArray[0]) 학생은 존재하지 않습니다. 다시 입력해주세요.")
         return
@@ -111,7 +111,7 @@ func deleteScore() {
     입력예) Mickey Swift
     """)
     
-    let nameAndScoreArray = inputErrorCheck.inputDataSet()
+    let nameAndScoreArray = inputErrorCheck.inputDataArray()
     guard let studentIndex = searchTool.searchForName(studentName: nameAndScoreArray[0], arrayLength: datum.count, dataSet: datum) else {
         print("🙅🏻 \(nameAndScoreArray[0]) 학생이 존재하지 않거나 \(nameAndScoreArray[0]) 학생은 \(nameAndScoreArray[1]) 과목 성적을 가지고 있지 않습니다. 다시 입력해주세요.")
         return

@@ -37,13 +37,13 @@ class InputErrorCheck {
      * 위의 경우가 아닌 입력값이 주어졌을 경우, 다시 함수를 호출한다.
      
      */
-    @discardableResult func inputDataSet() -> [String] {
+    @discardableResult func inputDataArray() -> [String] {
         let scoreAToF: [String] = ["A+", "A", "B+", "B", "C+", "C", "D+", "D", "F"]
         
         if let input = readLine() {
             if input.isEmpty || input.hasPrefix(" ") || input.hasSuffix(" ") {
                 print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
-                return self.inputDataSet()
+                return self.inputDataArray()
             }
             
             let nameSubjectScoreArray = input.components(separatedBy: " ")
@@ -57,6 +57,6 @@ class InputErrorCheck {
             }
         }
         print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
-        return self.inputDataSet()
+        return self.inputDataArray()
     }
 }
