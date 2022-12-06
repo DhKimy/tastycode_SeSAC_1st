@@ -121,16 +121,15 @@ func updateScore() {
           성적 값이 제대로 들어오는 지 확인하는 절차 필요
          */
         
-        for i in stride(from: 0, to: datum.count, by: 1) {
-            if datum[i].name == nameSubjectScoreSet[0] {
-                datum[i].subjectScore["\(nameSubjectScoreSet[1])"] = nameSubjectScoreSet[2]
-                
-                print("🙆🏻‍♀️ \(nameSubjectScoreSet[0]) 학생의 \(nameSubjectScoreSet[1]) 과목이 \(nameSubjectScoreSet[2])로 추가(변경)되었습니다.")
-                return
-            }
+        guard let studentIndex = searchTool.searchForName(studentName: nameSubjectScoreSet[0], arrayLength: datum.count, dataSet: datum) else {
+            print("🙅🏻 \(nameSubjectScoreSet[0]) 학생은 존재하지 않습니다. 다시 입력해주세요.")
+            return
         }
         
-        print("🙅🏻 \(nameSubjectScoreSet[0]) 학생은 존재하지 않습니다. 다시 입력해주세요.")
+        datum[studentIndex].subjectScore["\(nameSubjectScoreSet[1])"] = nameSubjectScoreSet[2]
+        print("🙆🏻‍♀️ \(nameSubjectScoreSet[0]) 학생의 \(nameSubjectScoreSet[1]) 과목이 \(nameSubjectScoreSet[2])로 추가(변경)되었습니다.")
+        return
+            
     }
 }
 
