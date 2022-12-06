@@ -25,7 +25,6 @@ func startProgram() {
         print("""
               원하는 기능을 입력해주세요.
               1: 학생추가  2: 학생삭제  3: 성적추가  4: 성적삭제  5: 평점보기  X : 종료
-              
               """)
         let input = readLine()
         switch input {
@@ -48,7 +47,7 @@ func startProgram() {
             print("프로그램을 종료합니다...")
             exit(0)
         default:
-            print("잘못된 입력입니다. 다시 입력하세요")
+            print("🙅🏻 잘못된 입력입니다. 다시 입력하세요")
             continue
         }
     }
