@@ -8,44 +8,49 @@
 import Foundation
 
 let dummyData = StudentData()
-var data: [StudentData] = [dummyData]
+var datum: [StudentData] = [dummyData]
+var searchTool = SearchTool()
+startProgram()
 
-print("""
---- 성적관리 프로그램 ---
-안녕하세요. 성적관리 프로그램에 오신 것을 환영합니다.
-""")
-
-while(true) {
+func startProgram() {
     print("""
-          원하는 기능을 입력해주세요.
-          1: 학생추가  2: 학생삭제  3: 성적추가  4: 성적삭제  5: 평점보기  X : 종료
-          
-          """)
-    let input = readLine()
-    switch input {
-    case "1":
-        print("✏️ 학생을 추가합니다.")
-        createStudent()
-    case "2":
-        print("✏️ 학생을 삭제합니다.")
-        deleteStudent()
-    case "3":
-        print("✏️ 성적을 추가합니다.")
-        updateScore()
-    case "4":
-        print("✏️ 성적을 삭제합니다.")
-        deleteScore()
-    case "5":
-        print("✏️ 평점을 검색합니다.")
-        showScore()
-    case "X":
-        print("프로그램을 종료합니다...")
-        exit(0)
-    default:
-        print("잘못된 입력입니다. 다시 입력하세요")
-        continue
+    --- 성적관리 프로그램 ---
+    안녕하세요. 성적관리 프로그램에 오신 것을 환영합니다.
+    """)
+
+    while(true) {
+        print("""
+              원하는 기능을 입력해주세요.
+              1: 학생추가  2: 학생삭제  3: 성적추가  4: 성적삭제  5: 평점보기  X : 종료
+              
+              """)
+        let input = readLine()
+        switch input {
+        case "1":
+            print("✏️ 학생을 추가합니다.")
+            createStudent()
+        case "2":
+            print("✏️ 학생을 삭제합니다.")
+            deleteStudent()
+        case "3":
+            print("✏️ 성적을 추가합니다.")
+            updateScore()
+        case "4":
+            print("✏️ 성적을 삭제합니다.")
+            deleteScore()
+        case "5":
+            print("✏️ 평점을 검색합니다.")
+            showScore()
+        case "X":
+            print("프로그램을 종료합니다...")
+            exit(0)
+        default:
+            print("잘못된 입력입니다. 다시 입력하세요")
+            continue
+        }
     }
 }
+
 
 func createStudent() {
     print("추가할 학생의 이름을 입력해주세요")
@@ -57,18 +62,17 @@ func createStudent() {
             return
         }
         
-        // 기존 데이터 중 중복 이름 체크
-        for i in stride(from: 0, to: data.count, by: 1) {
-            if data[i].name == input {
-                print("🙅🏻 \(input)은 이미 존재하는 학생입니다. 추가할 수 없습니다.")
-                return
-            }
+        guard searchTool.searchForName(studentName: input, arrayLength: datum.count, dataSet: datum) != nil else {
+            let newStudentData = StudentData()
+            newStudentData.name = input
+            datum.append(newStudentData)
+            print("🙌🏻 \(input) 학생을 추가했습니다. 🙌🏻")
+            return
         }
-            
-        var newStudentData = StudentData()
-        newStudentData.name = input
-        data.append(newStudentData)
-        print("🙌🏻 \(input) 학생을 추가했습니다. 🙌🏻")
+        
+        print("🙅🏻 \(input)은 이미 존재하는 학생입니다. 추가할 수 없습니다.")
+        return
+
     }
 }
 
@@ -82,9 +86,9 @@ func deleteStudent() {
             return
         }
         
-        for i in stride(from: 0, to: data.count, by: 1) {
-            if data[i].name == input {
-                data.remove(at: i)
+        for i in stride(from: 0, to: datum.count, by: 1) {
+            if datum[i].name == input {
+                datum.remove(at: i)
                 print("🗑️ \(input) 학생을 삭제하였습니다.")
                 return
             }
@@ -118,9 +122,9 @@ func updateScore() {
           성적 값이 제대로 들어오는 지 확인하는 절차 필요
          */
         
-        for i in stride(from: 0, to: data.count, by: 1) {
-            if data[i].name == nameSubjectScoreSet[0] {
-                data[i].subjectScore["\(nameSubjectScoreSet[1])"] = nameSubjectScoreSet[2]
+        for i in stride(from: 0, to: datum.count, by: 1) {
+            if datum[i].name == nameSubjectScoreSet[0] {
+                datum[i].subjectScore["\(nameSubjectScoreSet[1])"] = nameSubjectScoreSet[2]
                 
                 print("🙆🏻‍♀️ \(nameSubjectScoreSet[0]) 학생의 \(nameSubjectScoreSet[1]) 과목이 \(nameSubjectScoreSet[2])로 추가(변경)되었습니다.")
                 return
@@ -151,9 +155,9 @@ func deleteScore() {
             return
         }
         
-        for i in stride(from: 0, to: data.count, by: 1) {
-            if data[i].name == nameAndScoreSet[0] {
-                data[i].subjectScore.removeValue(forKey: nameAndScoreSet[1])
+        for i in stride(from: 0, to: datum.count, by: 1) {
+            if datum[i].name == nameAndScoreSet[0] {
+                datum[i].subjectScore.removeValue(forKey: nameAndScoreSet[1])
                 print("🙆🏻‍♀️ \(nameAndScoreSet[0]) 학생의 \(nameAndScoreSet[1]) 과목 성적이 삭제되었습니다.")
                 return
             }
@@ -173,12 +177,13 @@ func showScore() {
             return
         }
         
-        for i in stride(from: 0, to: data.count, by: 1) {
-            if data[i].name == input {
-                for (key, value) in data[i].subjectScore {
+        
+        for i in stride(from: 0, to: datum.count, by: 1) {
+            if datum[i].name == input {
+                for (key, value) in datum[i].subjectScore {
                     print("\(key) : \(value)")
                 }
-                print("평점 : \(calScore(scoreSet: data[i].subjectScore))")
+                print("평점 : \(calScore(scoreSet: datum[i].subjectScore))")
                 return
             }
         }
