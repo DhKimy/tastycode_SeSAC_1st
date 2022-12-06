@@ -26,8 +26,7 @@ func startProgram() {
               원하는 기능을 입력해주세요.
               1: 학생추가  2: 학생삭제  3: 성적추가  4: 성적삭제  5: 평점보기  X : 종료
               """)
-        let input = readLine()
-        switch input {
+        switch readLine() {
         case "1":
             print("✏️ 학생을 추가합니다.")
             createStudent()
@@ -42,7 +41,7 @@ func startProgram() {
             deleteScore()
         case "5":
             print("✏️ 평점을 검색합니다.")
-            showScore()
+            searchScore()
         case "X":
             print("프로그램을 종료합니다...")
             exit(0)
@@ -122,7 +121,7 @@ func deleteScore() {
     print("🙆🏻‍♀️ \(nameAndScoreSet[0]) 학생의 \(nameAndScoreSet[1]) 과목 성적이 삭제되었습니다.")
 }
 
-func showScore() {
+func searchScore() {
     print("평점을 알고 싶은 학생의 이름을 입력해주세요.")
     
     guard let input = inputErrorCheck.inputName() else {
