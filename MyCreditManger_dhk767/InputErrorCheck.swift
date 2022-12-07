@@ -8,6 +8,42 @@
 import Foundation
 
 class InputErrorCheck {
+    
+    func isValidText(text: String?) -> Bool {
+        guard text != nil else { return false }
+
+        let studentName = "[가-힣A-Za-z0-9]"
+        let pred = NSPredicate(format:"SELF MATCHES %@", studentName)
+        return pred.evaluate(with: text)
+    }
+    
+    func matchString (_string : String) -> String { // 문자열 변경 실시
+        let strArr = Array(_string) // 문자열 한글자씩 확인을 위해 배열에 담는다
+        
+        let pattern = "^[ㄱ-ㅎㅏ-ㅣ가-힣a-zA-Z0-9!-=\\s]$" // 정규식 : 한글, 영어, 숫자, 공백, +만 허용 (특수문자 제거)
+        
+        // 문자열 길이가 한개 이상인 경우만 패턴 검사 수행
+        var resultString = ""
+        if strArr.count > 0 {
+            if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
+                var index = 0
+                while index < strArr.count { // string 문자 하나 마다 개별 정규식 체크
+                    let checkString = regex.matches(in: String(strArr[index]), options: [], range: NSRange(location: 0, length: 1))
+                    if checkString.count == 0 {
+                        index += 1 // 정규식 패턴 외의 문자가 포함된 경우
+                    }
+                    else { // 정규식 포함 패턴의 문자
+                        resultString += String(strArr[index]) // 리턴 문자열에 추가
+                        index += 1
+                    }
+                }
+            }
+            return resultString
+        }
+        else {
+            return _string // 원본 문자 다시 리턴
+        }
+    }
     /**
      학생추가, 학생삭제, 평점보기 탭에서 활용한다.
      단순히 이름만 입력할 때 쓰는 메서드
@@ -17,11 +53,12 @@ class InputErrorCheck {
     func inputName() -> String? {
         if let input = readLine() {
             // 공백과 nil 체크
-            if input.isEmpty || input.hasPrefix(" ") || input.hasSuffix(" ") {
+            if input.isEmpty || input.hasPrefix(" ") || input.hasSuffix(" ") || isValidText(text: input) {
                 print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")
                 return self.inputName()
             }
-            return input
+            
+            return matchString(_string: input)
         }
         return nil
     }
@@ -46,7 +83,9 @@ class InputErrorCheck {
                 return self.inputDataArray()
             }
             
-            let nameSubjectScoreArray = input.components(separatedBy: " ")
+            let checkInput = matchString(_string: input)
+            
+            let nameSubjectScoreArray = checkInput.components(separatedBy: " ")
             
             if nameSubjectScoreArray.count == 2 {
                 return nameSubjectScoreArray
@@ -54,6 +93,11 @@ class InputErrorCheck {
             
             if nameSubjectScoreArray.count == 3 && scoreAToF.contains(nameSubjectScoreArray[2]){
                 return nameSubjectScoreArray
+            }
+            
+            if nameSubjectScoreArray.count == 3 && !scoreAToF.contains(nameSubjectScoreArray[2]) {
+                print("🙅🏻 성적은 대문자 알파벳이며 A or B+ 과 같이 입력해야 합니다. 다시 확인해주세요")
+                return self.inputDataArray()
             }
         }
         print("🙅🏻 잘못된 입력입니다. 다시 확인해주세요")

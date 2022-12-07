@@ -97,7 +97,7 @@ func updateScore() {
     
     let nameSubjectScoreArray = inputErrorCheck.inputDataArray()
     guard let studentIndex = searchTool.searchForName(studentName: nameSubjectScoreArray[0], arrayLength: datum.count, dataSet: datum) else {
-        print("🙅🏻 \(nameSubjectScoreArray[0]) 학생은 존재하지 않습니다. 다시 입력해주세요.")
+        print("🙅🏻 \(nameSubjectScoreArray[0]) 학생은 존재하지 않습니다. 학생 추가 후 시도해주세요.")
         return
     }
     
