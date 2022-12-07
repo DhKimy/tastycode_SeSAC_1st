@@ -7,8 +7,7 @@
 
 import Foundation
 
-let dummyData = StudentData()
-var datum: [StudentData] = [dummyData]
+var datum: [StudentData] = []
 var searchTool = SearchTool()
 var inputErrorCheck = InputErrorCheck()
 var calculator = CalculateScore()
