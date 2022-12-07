@@ -6,14 +6,13 @@
 //
 
 import Foundation
-import CoreData
 
 let dummyData = StudentData()
 var datum: [StudentData] = [dummyData]
 var searchTool = SearchTool()
 var inputErrorCheck = InputErrorCheck()
 var calculator = CalculateScore()
-/*
+
 startProgram()
 
 func startProgram() {
@@ -139,37 +138,4 @@ func searchScore() {
     }
     print("평점 : \(calculator.calculatingScore(scoreSet: datum[studentIndex].subjectScore))")
 }
-*/
-
-var container: NSPersistentContainer
-container = NSPersistentContainer(name: "UsersName")
-container.loadPersistentStores { NSPersistentStoreDescription, error in
-    if let error = error {
-        fatalError("치명적 에러 발생 : \(error.localizedDescription)")
-    }
-}
-
-var viewContext = container.viewContext
-var newItem = Item()
-
-do {
-    try viewContext.save()
-    print("성공적으로 저장되었습니다.")
-} catch {
-    print("저장할 수 없습니다.")
-}
-
-print("Hello, \(newItem.keys)")
-
-// Lets try a fetch request now.
-let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "UsersName")
-var fetchedItems: [NSItemProvider]
-do {
-    fetchedItems = try viewContext.fetch(fetchRequest) as! [NSItemProvider]
-} catch {
-    print("i am error")
-    fetchedItems = []
-}
-print("I am \(fetchedItems[0].self)")
-print("There are \(String(fetchedItems.count)) others like me")
 
