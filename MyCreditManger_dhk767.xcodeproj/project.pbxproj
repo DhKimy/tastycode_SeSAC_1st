@@ -9,15 +9,10 @@
 /* Begin PBXBuildFile section */
 		C91B68A1293DD5F300181440 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91B68A0293DD5F300181440 /* main.swift */; };
 		C91B68A9293DDE4B00181440 /* StudentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C91B68A8293DDE4B00181440 /* StudentData.swift */; };
-		C9466EE429403F24001B8BD0 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9466EE229403F24001B8BD0 /* DataModel.xcdatamodeld */; };
-		C9466EEF2940472C001B8BD0 /* Scores+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9466EEB2940472C001B8BD0 /* Scores+CoreDataClass.swift */; };
-		C9466EF02940472C001B8BD0 /* Scores+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9466EEC2940472C001B8BD0 /* Scores+CoreDataProperties.swift */; };
-		C9466EF729404A1B001B8BD0 /* UsersName+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9466EF529404A1B001B8BD0 /* UsersName+CoreDataClass.swift */; };
-		C9466EF829404A1B001B8BD0 /* UsersName+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9466EF629404A1B001B8BD0 /* UsersName+CoreDataProperties.swift */; };
 		C97E812C293DEE14000490F9 /* InputErrorCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E812B293DEE14000490F9 /* InputErrorCheck.swift */; };
 		C97E812E293F51C7000490F9 /* SearchTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E812D293F51C7000490F9 /* SearchTool.swift */; };
 		C97E8132293F6EA6000490F9 /* CalculateScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C97E8131293F6EA6000490F9 /* CalculateScore.swift */; };
-		C9C2F29129404AEE000F5F53 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C2F29029404AEE000F5F53 /* CoreDataManager.swift */; };
+		C9C2F29329406BB9000F5F53 /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C2F29229406BB9000F5F53 /* DBHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,16 +32,11 @@
 		C91B68A0293DD5F300181440 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C91B68A7293DD68000181440 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C91B68A8293DDE4B00181440 /* StudentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentData.swift; sourceTree = "<group>"; };
-		C9466EE329403F24001B8BD0 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
-		C9466EEB2940472C001B8BD0 /* Scores+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scores+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C9466EEC2940472C001B8BD0 /* Scores+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scores+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C9466EF529404A1B001B8BD0 /* UsersName+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersName+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C9466EF629404A1B001B8BD0 /* UsersName+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UsersName+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C97E8124293DEBE4000490F9 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C97E812B293DEE14000490F9 /* InputErrorCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputErrorCheck.swift; sourceTree = "<group>"; };
 		C97E812D293F51C7000490F9 /* SearchTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTool.swift; sourceTree = "<group>"; };
 		C97E8131293F6EA6000490F9 /* CalculateScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculateScore.swift; sourceTree = "<group>"; };
-		C9C2F29029404AEE000F5F53 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		C9C2F29229406BB9000F5F53 /* DBHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,10 +60,6 @@
 		C91B6894293DD5F300181440 = {
 			isa = PBXGroup;
 			children = (
-				C9466EF529404A1B001B8BD0 /* UsersName+CoreDataClass.swift */,
-				C9466EF629404A1B001B8BD0 /* UsersName+CoreDataProperties.swift */,
-				C9466EEB2940472C001B8BD0 /* Scores+CoreDataClass.swift */,
-				C9466EEC2940472C001B8BD0 /* Scores+CoreDataProperties.swift */,
 				C91B689F293DD5F300181440 /* MyCreditManger_dhk767 */,
 				C91B689E293DD5F300181440 /* Products */,
 			);
@@ -96,9 +82,8 @@
 				C97E812D293F51C7000490F9 /* SearchTool.swift */,
 				C97E8131293F6EA6000490F9 /* CalculateScore.swift */,
 				C91B68A8293DDE4B00181440 /* StudentData.swift */,
-				C9466EE229403F24001B8BD0 /* DataModel.xcdatamodeld */,
 				C91B68A7293DD68000181440 /* README.md */,
-				C9C2F29029404AEE000F5F53 /* CoreDataManager.swift */,
+				C9C2F29229406BB9000F5F53 /* DBHelper.swift */,
 			);
 			path = MyCreditManger_dhk767;
 			sourceTree = "<group>";
@@ -192,17 +177,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9466EF02940472C001B8BD0 /* Scores+CoreDataProperties.swift in Sources */,
 				C91B68A1293DD5F300181440 /* main.swift in Sources */,
 				C91B68A9293DDE4B00181440 /* StudentData.swift in Sources */,
 				C97E812C293DEE14000490F9 /* InputErrorCheck.swift in Sources */,
-				C9466EEF2940472C001B8BD0 /* Scores+CoreDataClass.swift in Sources */,
-				C9466EF829404A1B001B8BD0 /* UsersName+CoreDataProperties.swift in Sources */,
-				C9466EE429403F24001B8BD0 /* DataModel.xcdatamodeld in Sources */,
 				C97E812E293F51C7000490F9 /* SearchTool.swift in Sources */,
 				C97E8132293F6EA6000490F9 /* CalculateScore.swift in Sources */,
-				C9466EF729404A1B001B8BD0 /* UsersName+CoreDataClass.swift in Sources */,
-				C9C2F29129404AEE000F5F53 /* CoreDataManager.swift in Sources */,
+				C9C2F29329406BB9000F5F53 /* DBHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,19 +402,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		C9466EE229403F24001B8BD0 /* DataModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				C9466EE329403F24001B8BD0 /* DataModel.xcdatamodel */,
-			);
-			currentVersion = C9466EE329403F24001B8BD0 /* DataModel.xcdatamodel */;
-			path = DataModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = C91B6895293DD5F300181440 /* Project object */;
 }
