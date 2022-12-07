@@ -127,11 +127,7 @@ func deleteScore() {
         arrayLength: datum.count,
         dataSet: datum)
     else {
-        print("""
-        🙅🏻 \(nameAndScoreArray[0]) 학생이 존재하지 않거나
-        \(nameAndScoreArray[0]) 학생은 \(nameAndScoreArray[1])
-        과목 성적을 가지고 있지 않습니다. 다시 입력해주세요.
-        """)
+        print("🙅🏻 \(nameAndScoreArray[0]) 학생이 존재하지 않거나 \(nameAndScoreArray[0]) 학생은 \(nameAndScoreArray[1]) 과목 성적을 가지고 있지 않습니다. 다시 입력해주세요.")
         return
     }
     
