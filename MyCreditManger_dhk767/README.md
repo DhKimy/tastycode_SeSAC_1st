@@ -19,16 +19,17 @@
 
 ## 📣 프로젝트 구조
 
-###MyCreditManager
-├── CalculateScore.swift
-├── DataModel.xcdatamodeld
-│   └── DataModel.xcdatamodel
-│       └── contents
-├── InputErrorCheck.swift
-├── README.md
-├── SearchTool.swift
-├── StudentData.swift
-└── main.swift
+### MyCreditManager
+
+├─- CalculateScore.swift <br>
+├── DataModel.xcdatamodeld <br>
+│   └── DataModel.xcdatamodel <br>
+│       └── contents <br>
+├── InputErrorCheck.swift<br>
+├── README.md<br>
+├── SearchTool.swift<br>
+├── StudentData.swift<br>
+└── main.swift<br>
 
 <br>
 
